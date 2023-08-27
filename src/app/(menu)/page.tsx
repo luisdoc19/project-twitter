@@ -2,9 +2,10 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import TextCard from "../components/TextCard";
-import { revalidatePath } from "next/cache";
 import FormFullName from "../components/FormFullName";
 import FormTweet from "../components/FormTweet";
+
+export const dynamic = "force-dynamic";
 
 const HomePage = async ({
   searchParams,

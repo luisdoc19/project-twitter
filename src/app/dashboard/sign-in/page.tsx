@@ -13,6 +13,8 @@ export const metadata = {
     "Register page on a project example with Login, also it has some bakend teconologies",
 };
 
+export const dynamic = "force-dynamic";
+
 const LoginPage = async () => {
   const supabase = createServerComponentClient({ cookies });
   const {

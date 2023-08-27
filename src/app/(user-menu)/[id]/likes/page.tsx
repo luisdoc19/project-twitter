@@ -4,6 +4,8 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { redirect } from "next/navigation";
 import TextCard from "@/app/components/LikePosts";
 
+export const dynamic = "force-dynamic";
+
 const page = async ({ params }: { params: { id: string } }) => {
   const supabase = createServerComponentClient<Database>({ cookies });
   const {

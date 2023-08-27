@@ -1,3 +1,10 @@
 {
-  "/(menu)/page": "app/(menu)/page.js"
+  "/favicon.ico/route": "app/favicon.ico/route.js",
+  "/auth/callback/route": "app/auth/callback/route.js",
+  "/(menu)/page": "app/(menu)/page.js",
+  "/(menu)/update-profile/page": "app/(menu)/update-profile/page.js",
+  "/dashboard/sign-in/page": "app/dashboard/sign-in/page.js",
+  "/dashboard/sign-up/page": "app/dashboard/sign-up/page.js",
+  "/(user-menu)/[id]/page": "app/(user-menu)/[id]/page.js",
+  "/(user-menu)/[id]/likes/page": "app/(user-menu)/[id]/likes/page.js"
 }

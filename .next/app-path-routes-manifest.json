@@ -1,0 +1,10 @@
+{
+  "/favicon.ico/route": "/favicon.ico",
+  "/auth/callback/route": "/auth/callback",
+  "/(menu)/page": "/",
+  "/(menu)/update-profile/page": "/update-profile",
+  "/dashboard/sign-in/page": "/dashboard/sign-in",
+  "/dashboard/sign-up/page": "/dashboard/sign-up",
+  "/(user-menu)/[id]/page": "/[id]",
+  "/(user-menu)/[id]/likes/page": "/[id]/likes"
+}
