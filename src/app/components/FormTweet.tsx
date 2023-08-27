@@ -19,38 +19,35 @@ const FormTweet = ({ user }: { user: string }) => {
 
     if (inputRef.current === null) return;
     if (!form.get("text") || inputRef.current?.value.length < 3) return;
-    const file = form.get("file") as File;
 
     setLoading(true);
-    if (file.size > 0) {
-      const formData = new FormData();
-      formData.append("upload_preset", "curso-vue");
-      formData.append("file", file);
-
-      if (inputRefFile.current === null) return;
-
-      const url = "https://api.cloudinary.com/v1_1/djrggifvj/image/upload";
-      const { data } = await axios.post(url, formData);
-
-      await supabase.from("posts").insert({
-        text: form.get("text"),
-        image: data.secure_url,
-        user_id: user,
-      });
-      inputRefFile.current.value = "";
-      toast.success("Se ha añadido tu comentario");
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = async () => {
+        if (!reader.result) return;
+        const base64data = reader.result;
+        const { data } = await axios.post("/api/upload", { base64data });
+        await supabase.from("posts").insert({
+          text: form.get("text"),
+          image: data.link,
+          user_id: user,
+        });
+        toast.success("Se ha añadido tu comentario");
+        setLoading(false);
+        router.refresh();
+        setFile(null);
+      };
     } else {
-      console.log("hola");
       await supabase.from("posts").insert({
         text: form.get("text"),
         user_id: user,
       });
       toast.success("Se ha añadido tu comentario");
+      setLoading(false);
+      router.refresh();
+      setFile(null);
     }
-    inputRef.current.value = "";
-    setLoading(false);
-    router.refresh();
-    setFile(null);
   };
   return (
     <form onSubmit={handleSubmit} className="flex mx-auto">
