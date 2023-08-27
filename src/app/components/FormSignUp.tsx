@@ -21,7 +21,6 @@ const FormSignUp = () => {
       email: fields.email.toString(),
       password: fields.password.toString(),
       options: {
-        emailRedirectTo: "http://localhost:3000/sign-in",
         data: {
           user_name: fields.user.toString(),
         },
