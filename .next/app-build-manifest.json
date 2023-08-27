@@ -1,19 +1,9 @@
 {
   "pages": {
-    "/(menu)/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(menu)/page.js"
-    ],
-    "/(menu)/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(menu)/layout.css",
-      "static/chunks/app/(menu)/layout.js"
-    ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
     "/dashboard/layout": [
@@ -31,21 +21,10 @@
       "static/chunks/main-app.js",
       "static/chunks/app/dashboard/sign-in/page.js"
     ],
-    "/(user-menu)/[id]/page": [
+    "/dashboard/sign-up/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/(user-menu)/[id]/page.js"
-    ],
-    "/(user-menu)/[id]/loading": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/(user-menu)/[id]/loading.js"
-    ],
-    "/(user-menu)/[id]/layout": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/css/app/(user-menu)/[id]/layout.css",
-      "static/chunks/app/(user-menu)/[id]/layout.js"
+      "static/chunks/app/dashboard/sign-up/page.js"
     ]
   }
 }

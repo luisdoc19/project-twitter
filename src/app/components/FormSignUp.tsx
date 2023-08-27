@@ -36,14 +36,13 @@ const FormSignUp = () => {
   return (
     <form className="flex flex-col gap-4" onSubmit={handleSubmitSignIn}>
       <div className="relative">
-        <label className="text-[#bbb] text-sm text-scale-1100">Email</label>
+        <label className="text-[#bbb] text-sm text-scale-1100">Username</label>
         <input
           ref={userRef}
           type="text"
           name="user"
           placeholder="@username"
-          className="peer/input outline-none block box-border w-full scale-100 rounded-md shadow-sm transition-all text-[#ededed] bg-[#222222] focus:shadow-md focus:ring-current focus:ring-2 focus:border-[#494949]
-            focus:ring-[#313131] placeholder-[#505050] border border-[#3e3e3e] text-sm px-4 py-2 mt-2"
+          className="peer/input outline-none block box-border w-full rounded-md shadow-sm transition-all text-[#ededed] bg-[#222222]  focus:ring-2 focus:border-[#494949] focus:ring-[#272727] placeholder-[#505050] border border-[#3e3e3e] text-sm px-4 py-2 mt-2"
         />
       </div>
       <div className="relative">
@@ -53,8 +52,7 @@ const FormSignUp = () => {
           type="email"
           name="email"
           placeholder="you@example.com"
-          className="peer/input outline-none block box-border w-full scale-100 rounded-md shadow-sm transition-all text-[#ededed] bg-[#222222] focus:shadow-md focus:ring-current focus:ring-2 focus:border-[#494949]
-            focus:ring-[#313131] placeholder-[#505050] border border-[#3e3e3e] text-sm px-4 py-2 mt-2"
+          className="peer/input outline-none block box-border w-full rounded-md shadow-sm transition-all text-[#ededed] bg-[#222222]  focus:ring-2 focus:border-[#494949] focus:ring-[#272727] placeholder-[#505050] border border-[#3e3e3e] text-sm px-4 py-2 mt-2"
         />
       </div>
       <div className="relative">
@@ -64,8 +62,7 @@ const FormSignUp = () => {
           type="password"
           name="password"
           placeholder="• • • • • • • •"
-          className="peer/input outline-none block box-border w-full scale-100 rounded-md shadow-sm transition-all text-[#ededed] bg-[#222222] focus:shadow-md focus:ring-current focus:ring-2 focus:border-[#494949]
-            focus:ring-[#313131] placeholder-[#505050] border border-[#3e3e3e] text-sm px-4 py-2 mt-2"
+          className="peer/input outline-none block box-border w-full rounded-md shadow-sm transition-all text-[#ededed] bg-[#222222]  focus:ring-2 focus:border-[#494949] focus:ring-[#272727] placeholder-[#505050] border border-[#3e3e3e] text-sm px-4 py-2 mt-2"
         />
       </div>
       <div
@@ -77,7 +74,7 @@ const FormSignUp = () => {
       >
         <button className="flex flex-row">
           {loading && <span className="loading w-[14px]"></span>}
-          Sign In
+          Sign Up
         </button>
       </div>
     </form>
