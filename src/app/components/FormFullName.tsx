@@ -76,9 +76,9 @@ const FormFullName = ({ text }: { text: string }) => {
           <button
             className={`relative justify-center cursor-pointer inline-flex items-center space-x-2 text-center font-regular rounded-md outline-none transition-all outline-0 focus-visible:outline-4 focus-visible:outline-offset-1 border bg-[#33cc87] hover:bg-[#10472f]/90  text-white border-[#33cc87]  focus-visible:outline-[#10472f] shadow-sm  text-sm leading-4 px-3 py-2 ${
               loading
-                ? "opacity-50 cursor-not-allowed pointer-events-none"
+                ? "opacity-50 cursor-not-allowed pointer-events-none bg-[#10472f]/90"
                 : "opacity-100"
-            }"}`}
+            }"`}
           >
             {loading && <span className="loading"></span>}
             Save
