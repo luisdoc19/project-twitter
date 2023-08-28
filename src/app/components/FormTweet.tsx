@@ -29,17 +29,21 @@ const FormTweet = ({ user }: { user: string }) => {
         if (!reader.result) return;
         const base64data = reader.result;
         const { data } = await axios.post("/api/upload", { base64data });
-        await supabase.from("posts").insert({
-          text: form.get("text"),
-          image: data.link,
-          user_id: user,
-        });
-        toast.success("Se ha añadido tu comentario");
-        setLoading(false);
-        router.refresh();
-        setFile(null);
+
+        if (data.link) {
+          await supabase.from("posts").insert({
+            text: form.get("text"),
+            image: data.link,
+            user_id: user,
+          });
+          toast.success("Se ha añadido tu comentario");
+          setLoading(false);
+          router.refresh();
+          setFile(null);
+        }
       };
       inputRefFile.current.value = "";
+      inputRef.current.value = "";
     } else {
       await supabase.from("posts").insert({
         text: form.get("text"),
@@ -49,8 +53,8 @@ const FormTweet = ({ user }: { user: string }) => {
       setLoading(false);
       router.refresh();
       setFile(null);
+      inputRef.current.value = "";
     }
-    inputRef.current.value = "";
   };
   return (
     <form onSubmit={handleSubmit} className="flex mx-auto">

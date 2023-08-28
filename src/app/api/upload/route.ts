@@ -10,16 +10,15 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const containerName = process.env.CONTAINER_NAME;
   const storageToken = process.env.STORAGE_ACCOUNT;
 
-  if (!conn || !containerName)
-    return NextResponse.json({ status: 500, body: "No connection string" });
+  const blobServiceClient = BlobServiceClient.fromConnectionString(conn || "");
 
-  const blobServiceClient = BlobServiceClient.fromConnectionString(conn);
-
-  const containerClient = blobServiceClient.getContainerClient(containerName);
+  const containerClient = blobServiceClient.getContainerClient(
+    containerName || ""
+  );
   const filename = `${Date.now()}.png`;
   const imageBuffer = Buffer.from(data, "base64");
   const blockBlobClient = containerClient.getBlockBlobClient(filename);
-  const response = await blockBlobClient.uploadData(imageBuffer, {
+  await blockBlobClient.uploadData(imageBuffer, {
     blobHTTPHeaders: { blobContentType: "image/png" },
   });
 
