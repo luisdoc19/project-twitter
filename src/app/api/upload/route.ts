@@ -6,13 +6,12 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
   const data = base64data.split(",")[1];
 
-  const storageAccount = "subirarchivos";
-  const containerName = "imagenes";
-  const connectionString = `DefaultEndpointsProtocol=https;AccountName=subirarchivos;AccountKey=GNhIUcvWHRG8qz0oTggDovpbfhBpQ14kffgfmIjSsvldZRD5QUroxrcuFhUg7ICxRJyc8n5whd/o+AStvipKkA==;EndpointSuffix=core.windows.net`;
-
-  const blobServiceClient =
-    BlobServiceClient.fromConnectionString(connectionString);
-  const containerClient = blobServiceClient.getContainerClient(containerName);
+  const blobServiceClient = BlobServiceClient.fromConnectionString(
+    process.env.CONNECTION_STRING || ""
+  );
+  const containerClient = blobServiceClient.getContainerClient(
+    process.env.CONTAINER_NAME || ""
+  );
   const filename = `${Date.now()}.png`;
   const imageBuffer = Buffer.from(data, "base64");
   const blockBlobClient = containerClient.getBlockBlobClient(filename);
@@ -21,6 +20,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   });
 
   return NextResponse.json({
-    link: `https://${storageAccount}.blob.core.windows.net/${containerName}/${filename}`,
+    link: `https://${process.env.STORAGE_ACCOUNT}.blob.core.windows.net/${process.env.CONTAINER_NAME}/${filename}`,
   });
 }
