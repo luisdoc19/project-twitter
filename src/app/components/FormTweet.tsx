@@ -22,6 +22,7 @@ const FormTweet = ({ user }: { user: string }) => {
 
     setLoading(true);
     if (file) {
+      if (inputRefFile.current === null) return;
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = async () => {
@@ -38,6 +39,7 @@ const FormTweet = ({ user }: { user: string }) => {
         router.refresh();
         setFile(null);
       };
+      inputRefFile.current.value = "";
     } else {
       await supabase.from("posts").insert({
         text: form.get("text"),
@@ -48,6 +50,7 @@ const FormTweet = ({ user }: { user: string }) => {
       router.refresh();
       setFile(null);
     }
+    inputRef.current.value = "";
   };
   return (
     <form onSubmit={handleSubmit} className="flex mx-auto">

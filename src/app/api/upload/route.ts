@@ -6,12 +6,16 @@ export async function POST(req: NextRequest, res: NextResponse) {
 
   const data = base64data.split(",")[1];
 
-  const blobServiceClient = BlobServiceClient.fromConnectionString(
-    process.env.CONNECTION_STRING || ""
-  );
-  const containerClient = blobServiceClient.getContainerClient(
-    process.env.CONTAINER_NAME || ""
-  );
+  const conn = process.env.CONNECTION_STRING;
+  const containerName = process.env.CONTAINER_NAME;
+  const storageToken = process.env.STORAGE_ACCOUNT;
+
+  if (!conn || !containerName)
+    return NextResponse.json({ status: 500, body: "No connection string" });
+
+  const blobServiceClient = BlobServiceClient.fromConnectionString(conn);
+
+  const containerClient = blobServiceClient.getContainerClient(containerName);
   const filename = `${Date.now()}.png`;
   const imageBuffer = Buffer.from(data, "base64");
   const blockBlobClient = containerClient.getBlockBlobClient(filename);
@@ -20,6 +24,6 @@ export async function POST(req: NextRequest, res: NextResponse) {
   });
 
   return NextResponse.json({
-    link: `https://${process.env.STORAGE_ACCOUNT}.blob.core.windows.net/${process.env.CONTAINER_NAME}/${filename}`,
+    link: `https://${storageToken}.blob.core.windows.net/${containerName}/${filename}`,
   });
 }
