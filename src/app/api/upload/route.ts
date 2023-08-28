@@ -7,6 +7,8 @@ export async function POST(req: NextRequest, res: NextResponse) {
   const data = base64data.split(",")[1];
 
   const conn = process.env.CONNECTION_STRING;
+
+  console.log(conn, typeof conn);
   const containerName = process.env.CONTAINER_NAME;
   const storageToken = process.env.STORAGE_ACCOUNT;
 
